@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#e8e0cd" />
+    <meta
+      name="description"
+      content="지구 위에서 이동하고 살아가고 만들고 기록하는 방식을 쌓아가는, Jikoo On과 LOMO의 living archive." />
+    <meta name="author" content="Jikoo On" />
+    <meta name="color-scheme" content="light" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <script>
+      try {
+        const savedLanguage = localStorage.getItem("lomo-language");
+        const browserLanguage = navigator.language || navigator.userLanguage || "";
+        const initialLanguage = savedLanguage === "ko" || savedLanguage === "en" ? savedLanguage : (/^ko(?:-|$)/i.test(browserLanguage) ? "ko" : "en");
+        document.documentElement.lang = initialLanguage;
+        document.documentElement.dataset.lang = initialLanguage;
+      } catch (_) {
+        document.documentElement.lang = "ko";
+        document.documentElement.dataset.lang = "ko";
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "url": "https://jikoolomo.github.io/lomo-webpage/",
+            "name": "Jikoo On · LOMO Links",
+            "description": "지구 위에서 이동하고 살아가고 만들고 기록하는 방식을 쌓아가는 Jikoo On과 LOMO의 living archive.",
+            "inLanguage": "ko"
+          },
+          {
+            "@type": "Person",
+            "name": "Jikoo On",
+            "alternateName": "지쿠 On",
+            "sameAs": [
+              "https://www.instagram.com/lomoworldjk/",
+              "https://brunch.co.kr/@eatfear",
+              "https://eatfear.tistory.com/"
+            ]
+          }
+        ]
+      }
+    </script>
+    <link rel="canonical" href="https://jikoolomo.github.io/lomo-webpage/" />
+    <meta property="og:url" content="https://jikoolomo.github.io/lomo-webpage/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Jikoo On · LOMO Links" />
+    <meta property="og:title" content="Jikoo On · LOMO Links" />
+    <meta property="og:description" content="지구 위에서 이동하고 살아가고 만들고 기록하는 방식을 쌓아갑니다." />
+    <meta property="og:image" content="https://jikoolomo.github.io/lomo-webpage/images/hero-earth.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Jikoo On · LOMO Links" />
+    <meta name="twitter:description" content="지구 위에서 이동하고 살아가고 만들고 기록하는 방식을 쌓아갑니다." />
+    <meta name="twitter:image" content="https://jikoolomo.github.io/lomo-webpage/images/hero-earth.webp" />
+    <script>
+      try {
+        const replay = new URLSearchParams(location.search).get("intro") === "1";
+        const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if ((replay || !localStorage.getItem("lomo-intro-seen")) && !reduced) {
+          document.documentElement.classList.add("intro-pending");
+        }
+      } catch (_) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Gowun+Batang:wght@400;700&family=Noto+Serif+KR:wght@400;500;600&display=swap"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23123f3d'/%3E%3Cpath d='M43 12C27 8 14 19 14 33c0 14 14 23 27 16 8-4 9-17 1-23-5-4-13-1-13 6 0 5 5 8 9 5' fill='none' stroke='%23e8e0cd' stroke-width='4.5' stroke-linecap='round'/%3E%3C/svg%3E" />
+    <title>Jikoo On · LOMO Links</title>
+  </head>
+
+  <body>
+    <!--
+      LOMO Links / independent GitHub Pages source
+      Brand idea: a citizen of Earth holding distant climates together.
+      Replace only image URLs in styles.css when using personal photographs.
+    -->
+    <div class="ecosystem-intro" id="ecosystem-intro" data-theme="sea" aria-hidden="true" hidden>
+      <div class="intro-landscape" aria-hidden="true"></div>
+      <div class="intro-shade" aria-hidden="true"></div>
+      <div class="intro-content">
+        <p class="intro-brand">LOMO / EARTH CITIZEN</p>
+                  <div class="intro-center">
+
+          <span class="intro-number">01 / 04</span>
+          <p class="intro-korean">바다의 조류를<br />따라갑니다.</p>
+          <p class="intro-english">SEA / SALT / TIDE</p>
+        </div>
+        <div class="intro-footer">
+          <div class="intro-progress" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          <button class="intro-skip" type="button" data-i18n-html="intro.skip">건너뛰기 <span>↗</span></button>
+        </div>
+      </div>
+    </div>
+
+    <audio id="ambient-sea" loop preload="none"><source src="audio/lomo-sea-ambient.mp3" type="audio/mpeg" /></audio>
+    <audio id="ambient-forest" loop preload="none"><source src="audio/lomo-forest-ambient.mp3" type="audio/mpeg" /></audio>
+    <audio id="ambient-desert" loop preload="none"><source src="audio/lomo-desert-ambient.mp3" type="audio/mpeg" /></audio>
+    <audio id="ambient-moss" loop preload="none"><source src="audio/lomo-moss-ambient.mp3" type="audio/mpeg" /></audio>
+
+    <button class="sound-toggle" type="button" data-sound-toggle aria-pressed="false" aria-label="자연 배경음 켜기">
+      <span class="sound-glyph" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span data-sound-label aria-live="polite">SOUND OFF</span>
+    </button>
+
+    <main class="site-shell" id="site-content">
+      <div class="contour contour--top" aria-hidden="true"></div>
+
+      <header class="site-header wrap">
+        <a class="brand" href="#top" aria-label="Jikoo On 홈으로 이동" data-i18n-aria-label="brand.home">
+          <svg class="brand-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+            <path d="M33.5 8.5C22 5 11 12.3 11 24.5c0 11.5 11.2 18.4 21.7 13.1 7.7-3.9 8.4-14.2 1.5-19.2-4.6-3.3-11.2-.6-11.2 5.1 0 4 4.2 6.4 7.5 4.1" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/>
+            <path d="M24 14.5c3.5 2.9 5.2 6.1 5.2 9.5 0 3.9-1.9 7.1-5.7 9.7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span>
+            <b>JIKOO ON</b>
+            <em>LOMO LINKS / LIVING ARCHIVE</em>
+          </span>
+        </a>
+        <div class="header-tools">
+          <p class="header-climates" data-i18n="header.climates">○ 바다 · 숲 · 사막 · 이끼숲</p>
+          <div class="language-switcher" role="group" aria-label="언어 선택" data-i18n-aria-label="language.group">
+            <button type="button" data-language="ko" aria-pressed="true">한국어</button><span aria-hidden="true">/</span><button type="button" data-language="en" aria-pressed="false">EN</button>
+          </div>
+        </div>
+      </header>
+
+      <section class="hero wrap" aria-labelledby="page-title">
+        <aside class="origin-rail" aria-label="기록의 시작">
+          <span>01</span><i></i><span>ORIGIN NOTE</span>
+        </aside>
+
+        <div class="hero-copy">
+          <div class="meta-line">
+            <span>JIKOO ON / THE OBSERVER</span>
+            <span>LOMO TERRARIUM · BEGIN DEC 2022</span>
+          </div>
+          <h1 id="page-title" data-i18n-html="hero.title">서로 먼 풍경을<br />한 기록 안에<br /><i>천천히 기릅니다.</i></h1>
+          <p class="english-line" data-i18n="hero.english">A citizen of Earth, holding distant climates together.</p>
+          <div class="rule"></div>
+          <p class="origin-quote" data-i18n-html="hero.origin">물이 무서웠습니다.<br /><strong>지금은 다이버예요.</strong></p>
+          <p class="intro-body" data-i18n="hero.body">
+            2022년 12월부터 서로 다른 환경에서 만난 감각을 사진과 글로 남기고 있습니다.
+            바다와 숲, 사막과 이끼숲처럼 쉽게 함께 놓이지 않는 풍경은 LOMO Route Studio와
+            언젠가 지을 테라리움 하우스의 상상이 되었습니다.
+          </p>
+          <div class="fact-line" aria-label="LOMO 기록의 핵심 환경" data-i18n-aria-label="hero.factLabel">
+            <span>BEGIN / DEC 2022</span><i></i><span>SEA ↔ FOREST</span><i></i><span>DESERT ↔ MOSS</span>
+          </div>
+        </div>
+
+        <figure class="hero-polaroid">
+            <img
+            src="images/hero-earth.webp"
+            alt="안개가 감도는 숲과 산의 풍경"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async" />
+          <figcaption><span>FIELD NOTE / EARTH</span><span>shared climates</span></figcaption>
+          <div class="biome-strip" aria-label="LOMO가 품는 생태계">
+            <span class="sea">SEA / SALT</span><span class="forest">FOREST / ROOT</span><span class="desert">DESERT / DUST</span><span class="moss">MOSS / MIST</span>
+          </div>
+          <span class="north" aria-label="북쪽을 가리키는 나침반">
+            <b>N</b>
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M24 7 29 24 24 41 19 24 24 7Z" fill="currentColor" opacity=".2" />
+              <path d="M24 7 29 24 24 24Z" fill="currentColor" />
+              <path d="M24 41 19 24 24 24Z" fill="currentColor" opacity=".42" />
+              <circle cx="24" cy="24" r="2.2" fill="currentColor" />
+            </svg>
+          </span>
+        </figure>
+      </section>
+
+      <section class="waypoints wrap" aria-labelledby="waypoints-title">
+        <div class="section-heading">
+          <p>LOMO ECOSYSTEM / WAYS TO FOLLOW</p>
+          <h2 id="waypoints-title" data-i18n="ecosystem.title">기록의 생태계</h2>
+          <span data-i18n-html="ecosystem.lead">서로 다른 기후의 감각이 사진, 문장, 도시, 도구, 하우스로 이어집니다.<br />지구 위에서 이동하고, 살아가고, 만들고, 기록하는 방식까지.</span>
+        </div>
+
+        <div class="climate-index" aria-label="네 가지 환경의 공존">
+          <span><i class="dot sea-dot"></i>SEA / SALINE</span>
+          <span><i class="dot forest-dot"></i>FOREST / ROOTED</span>
+          <span><i class="dot desert-dot"></i>DESERT / ARID</span>
+          <span><i class="dot moss-dot"></i>MOSS / MISTED</span>
+        </div>
+        <div class="citizen-spectrum" aria-label="Earth Citizen의 실천 영역: 이동, 살아가기, 만들기, 기록하기, 머무르기">
+          <span>MOVE</span><i></i><span>LIVE</span><i></i><span>MAKE</span><i></i><span>RECORD</span><i></i><span>DWELL</span>
+        </div>
+
+        <a class="feature-route" href="https://apps.apple.com/app/id6782547819" target="_blank" rel="noreferrer noopener" data-sound-theme="sea">
+          <div class="route-top"><span>WAYPOINT 01 / ROUTE TOOL / MOVEMENT</span><span>OPEN ROUTE ↗</span></div>
+          <div class="route-content">
+            <div class="route-copy">
+              <span class="compass" aria-hidden="true">◉</span>
+              <small>MADE BY JIKOO ON · APP · MOVEMENT</small>
+              <h3 data-i18n-html="route.title">LOMO Route<br />Studio</h3>
+              <p data-i18n-html="route.body">사진 한 장에서, 빛나는 지구본 위로<br />내 여정이 하나의 영상이 됩니다.</p>
+              <b data-i18n="route.cta">앱스토어에서 경로 열기 ↘</b>
+            </div>
+            <div class="route-image" role="img" aria-label="자연 속 여행 노트" data-i18n-aria-label="image.route"></div>
+          </div>
+        </a>
+
+        <div class="link-list">
+          <a class="waypoint sea-waypoint" href="https://www.instagram.com/lomoworldjk/" target="_blank" rel="noreferrer noopener" data-sound-theme="sea">
+            <span class="waypoint-number">02</span><span class="waypoint-icon">◎</span>
+            <span class="waypoint-title"><small>WAYPOINT 02 / LIGHT ARCHIVE</small><b>Instagram</b><em>@lomoworldjk</em></span>
+            <span class="waypoint-photo sea-photo" role="img" aria-label="해안의 조수와 모래를 담은 사진" data-i18n-aria-label="image.sea"></span>
+            <span class="waypoint-note" data-i18n="waypoint.instagram.note">서로 다른 빛을 모은 사진 기록</span><span class="waypoint-arrow">↗</span>
+          </a>
+          <a class="waypoint forest-waypoint" href="https://brunch.co.kr/@eatfear" target="_blank" rel="noreferrer noopener" data-sound-theme="forest">
+            <span class="waypoint-number">03</span><span class="waypoint-icon">≋</span>
+            <span class="waypoint-title"><small>WAYPOINT 03 / ESSAY STRATUM</small><b>브런치</b><em data-i18n="waypoint.brunch.title">풍경이 지나간 뒤 남는 문장</em></span>
+            <span class="waypoint-photo forest-photo" role="img" aria-label="안개 낀 숲을 담은 사진" data-i18n-aria-label="image.forest"></span>
+            <span class="waypoint-note" data-i18n="waypoint.brunch.note">느린 여행을 오래 바라본 에세이</span><span class="waypoint-arrow">↗</span>
+          </a>
+          <a class="waypoint desert-waypoint" href="https://eatfear.tistory.com/" target="_blank" rel="noreferrer noopener" data-sound-theme="desert">
+            <span class="waypoint-number">04</span><span class="waypoint-icon">△</span>
+            <span class="waypoint-title"><small>WAYPOINT 04 / FIELD &amp; CITY NOTES</small><b>Tistory</b><em data-i18n="waypoint.tistory.title">도시 · 체류 · 실용 여행 노트</em></span>
+            <span class="waypoint-photo desert-photo" role="img" aria-label="붉은 사막의 능선을 담은 사진" data-i18n-aria-label="image.desert"></span>
+            <span class="waypoint-note" data-i18n="waypoint.tistory.note">몸으로 배우는 낯선 도시 기록</span><span class="waypoint-arrow">↗</span>
+          </a>
+        </div>
+
+        <button class="house-route" type="button" data-modal-open data-sound-theme="moss" aria-haspopup="dialog" aria-controls="lomo-house-modal">
+          <div class="house-photo" role="img" aria-label="깊은 숲과 이끼의 풍경" data-i18n-aria-label="image.house"></div>
+          <div class="house-copy"><small>05 / LIVING TERRARIUM / FUTURE SHELTER</small><h3>LOMO House</h3><p data-i18n-html="house.teaser">바다의 수분, 사막의 빛, 숲과 이끼의 시간을<br />함께 품을 집의 스케치.</p></div>
+          <span class="house-arrow" aria-hidden="true">OPEN ↗</span>
+        </button>
+      </section>
+
+      <footer class="site-footer wrap">
+        <div class="specimen-tray">
+          <p>✧ ONE TERRARIUM / MANY CLIMATES</p>
+          <span class="salt">SALT</span><span class="sap">SAP</span><span class="sand">SAND</span><span class="moss-specimen">MOSS</span>
+        </div>
+        <p>© 2026 Jikoo Kim · 지쿠 On</p>
+        <a href="#top" data-i18n="footer.back">BACK TO SURFACE ↗</a>
+      </footer>
+      <div class="contour contour--bottom" aria-hidden="true"></div>
+    </main>
+
+    <div class="modal-backdrop" id="lomo-house-modal" role="dialog" aria-modal="true" aria-labelledby="house-modal-title" aria-describedby="house-modal-description" aria-hidden="true" hidden>
+      <section class="house-modal" tabindex="-1">
+        <button class="modal-close" type="button" data-modal-close aria-label="LOMO House 상세 창 닫기" data-i18n-aria-label="modal.close"><span data-i18n="modal.closeText">닫기</span> <span>×</span></button>
+        <div class="modal-image" role="img" aria-label="안개와 숲이 공존하는 자연 풍경" data-i18n-aria-label="image.modal"></div>
+        <div class="modal-content">
+          <p class="modal-kicker">LOMO HOUSE / A FUTURE SHELTER</p>
+          <h2 id="house-modal-title" data-i18n-html="modal.title">서로 먼 기후가<br /><i>함께 머무는 집</i></h2>
+          <p id="house-modal-description" class="modal-lead" data-i18n="modal.lead">LOMO House는 여행에서 만난 상반된 환경을 한 지붕 아래에서 상상하는, 아직은 미래형 테라리움 하우스입니다.</p>
+          <p class="modal-body" data-i18n="modal.body">바다의 습도와 사막의 빛, 숲의 그림자와 이끼의 느린 시간을 분리하지 않고 한 공간의 감각으로 엮습니다. 국경을 넘어 지구 위에 살아가는 태도처럼, LOMO House는 서로 다른 조건이 관계를 맺는 방식에 대한 스케치입니다.</p>
+          <div class="modal-biomes" aria-label="LOMO House의 네 가지 환경" data-i18n-aria-label="modal.biomesLabel">
+            <span class="sea">SEA<br /><b data-i18n="biome.sea">수분과 조류</b></span><span class="forest">FOREST<br /><b data-i18n="biome.forest">그림자와 뿌리</b></span><span class="desert">DESERT<br /><b data-i18n="biome.desert">빛과 온기</b></span><span class="moss">MOSS<br /><b data-i18n="biome.moss">안개와 시간</b></span>
+          </div>
+          <a class="modal-outbound" href="https://www.instagram.com/lomo.earth/" target="_blank" rel="noreferrer noopener" data-i18n="modal.cta">LOMO.earth에서 스케치 보기 ↗</a>
+        </div>
+      </section>
+    </div>
+    <script src="script.js" defer></script>
+  </body>
+</html>

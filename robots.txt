@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jikoolomo.github.io/lomo-webpage/sitemap.xml

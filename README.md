@@ -4,7 +4,7 @@
 
 ## 적용 방법
 
-저장소의 배포 루트에 `index.html`, `styles.css`, `script.js`, `robots.txt`, `audio/`, `images/` 폴더를 함께 올립니다. GitHub 저장소의 **Settings → Pages**에서 `Deploy from a branch`를 선택하고 해당 브랜치의 루트(`/`)를 배포 경로로 설정합니다.
+저장소의 배포 루트에 `index.html`, `styles.css`, `script.js`, `robots.txt`, `sitemap.xml`, `audio/`, `images/` 폴더를 함께 올립니다. `.github/workflows/pages.yml`이 `main` 브랜치에 push될 때 GitHub Pages artifact를 만들고 자동 배포합니다. 공개 주소는 **https://jikoolomo.github.io/lomo-webpage/** 입니다.
 
 모든 외부 링크는 이미 설정되어 있습니다. 카피는 `index.html`에서, 색상·여백·사진은 `styles.css`의 `:root` 및 각 이미지 배경 선언에서 바꿀 수 있습니다. 로컬 사진은 `images/` 폴더에서 교체할 수 있으며, `script.js`는 바다·숲·사막·이끼숲 링크의 호버 색 전환, 자연음 전환, LOMO House 상세 모달을 담당합니다. LOMO 페이지를 새로 열면 사운드는 ON 상태로 초기화되고, 페이지가 백그라운드로 전환되거나 다른 페이지로 이동하면 모든 자연음이 즉시 멈춥니다.
 
@@ -18,7 +18,6 @@
 
 헤더 우측의 `한국어 / EN` 버튼으로 화면 언어를 즉시 전환할 수 있습니다. 저장된 언어 선택이 있으면 다음 방문에도 유지되고, 처음 방문해 저장된 선택이 없으면 브라우저 언어가 `ko` 또는 `ko-*`일 때 한국어로 시작하며 그 외에는 영어로 시작합니다. 인트로, 히어로, 생태계 설명, Route Studio, Waypoints, LOMO House 모달과 접근성 라벨을 함께 번역합니다.
 
-검색엔진 노출을 위해 `robots.txt`도 함께 배포합니다.
- 실제 GitHub Pages 주소가 확정되면 `index.html`에 `<link rel="canonical" href="https://실제-도메인/" />`를 추가하고, 같은 도메인을 기준으로 `sitemap.xml`을 생성해 Google Search Console과 Bing Webmaster Tools에 제출합니다. 현재 소스에는 도메인을 추측하지 않기 위해 canonical과 sitemap을 임의로 넣지 않았습니다. Open Graph·Twitter 카드·`WebSite`/`Person` JSON-LD는 이미 추가되어 있습니다.
+검색엔진 노출을 위해 `robots.txt`와 `sitemap.xml`을 실제 GitHub Pages 주소에 연결했습니다. `index.html`에는 canonical, `og:url`, GitHub Pages 절대 경로의 공유 이미지와 `WebSite` 구조화 데이터 URL을 반영했습니다. Open Graph·Twitter 카드·`WebSite`/`Person` JSON-LD도 포함되어 있습니다. 공개 후 Google Search Console과 Bing Webmaster Tools에 sitemap URL을 제출하면 색인 상태를 확인할 수 있습니다.
 
 > 브랜드 문장: **LOMO는 지구 위에 살아가는 지구시민의 태도로, 서로 먼 환경을 한 기록 안에 공존시키는 아카이브입니다.**

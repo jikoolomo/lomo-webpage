@@ -1,5 +1,9 @@
 # LOMO Links 개선 내역
 
+## Cloudflare Web Analytics 방문자 통계
+
+Cloudflare Web Analytics 공개 beacon을 원본 `index.html`에 설치하고, 배포 전 다국어 생성 과정을 통해 루트·`/ko/`·`/en/` 정적 페이지에 동일하게 반영했습니다. `jikoolomo.github.io` hostname의 Cloudflare 대시보드에서 오늘·최근 7일·최근 30일·사용자 지정 전체 기간의 익명 순 방문자 통계를 확인합니다. 사이트에는 소유자 전용 비밀번호를 저장하지 않고, 통계 접근은 Cloudflare 계정 로그인으로 제한합니다.
+
 ## Open Graph·sitemap·모바일 성능 최적화
 
 한국어·영어 페이지에 각각 1200×630 JPEG Open Graph 이미지를 추가하고 `og:image:width`, `og:image:height`, `og:image:type`, 언어별 `og:locale` 메타를 적용했습니다. 루트·`/ko/`·`/en/` 페이지는 각 언어의 공유 이미지를 사용합니다.

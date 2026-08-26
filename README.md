@@ -22,4 +22,10 @@
 
 검색엔진 노출을 위해 `robots.txt`와 다국어 `sitemap.xml`을 실제 GitHub Pages 주소에 연결했습니다. sitemap에는 루트·`/ko/`·`/en/`의 `lastmod`, hreflang 대체 링크, 언어별 OG·hero 이미지가 포함됩니다. 루트와 `/ko/`, `/en/`에는 각각 canonical, `og:url`, 1200×630 JPEG 공유 이미지, 언어별 `WebSite`·`WebPage`·`Person` JSON-LD, 양방향 `hreflang`이 포함됩니다. 공개 후 Google Search Console과 Bing Webmaster Tools에 `https://jikoolomo.github.io/lomo-webpage/sitemap.xml`을 제출하면 색인 상태를 확인할 수 있습니다.
 
+## 방문자 통계
+
+Cloudflare Web Analytics의 공개용 beacon을 루트·`/ko/`·`/en/` 페이지에 설치했습니다. 방문자 식별을 위해 IP·브라우저 지문·개인정보를 직접 저장하지 않으며, Cloudflare 대시보드에서 익명 집계된 **순 방문자(Unique visitors)**를 확인합니다. Cloudflare Web Analytics에서 hostname은 `jikoolomo.github.io`로 등록되어 있고, 현재 GitHub Pages 경로 `/lomo-webpage/`의 페이지 방문을 수집합니다.
+
+통계는 사이트에 공개 대시보드를 만들지 않고 Cloudflare 계정 로그인 후 **Web Analytics → `jikoolomo.github.io`** 속성에서 확인합니다. 날짜 범위를 오늘, 최근 7일, 최근 30일 또는 사용자 지정 전체 기간으로 선택할 수 있습니다. 정식 도메인 구매는 방문자 집계에 필요하지 않습니다. Cloudflare에서 생성된 token은 웹페이지에 공개되는 site 식별자이므로 저장소에 포함해도 되지만, Cloudflare API Token이나 비밀번호는 저장소에 넣지 않습니다.
+
 > 브랜드 문장: **LOMO는 지구 위에 살아가는 지구시민의 태도로, 서로 먼 환경을 한 기록 안에 공존시키는 아카이브입니다.**

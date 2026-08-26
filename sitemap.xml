@@ -1,21 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://jikoolomo.github.io/lomo-webpage/</loc>
+    <lastmod>2026-08-26</lastmod>
     <xhtml:link rel="alternate" hreflang="ko" href="https://jikoolomo.github.io/lomo-webpage/ko/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://jikoolomo.github.io/lomo-webpage/en/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://jikoolomo.github.io/lomo-webpage/" />
+    <image:image><image:loc>https://jikoolomo.github.io/lomo-webpage/images/og-image-ko.jpg</image:loc></image:image>
+    <image:image><image:loc>https://jikoolomo.github.io/lomo-webpage/images/hero-earth.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://jikoolomo.github.io/lomo-webpage/ko/</loc>
+    <lastmod>2026-08-26</lastmod>
     <xhtml:link rel="alternate" hreflang="ko" href="https://jikoolomo.github.io/lomo-webpage/ko/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://jikoolomo.github.io/lomo-webpage/en/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://jikoolomo.github.io/lomo-webpage/" />
+    <image:image><image:loc>https://jikoolomo.github.io/lomo-webpage/images/og-image-ko.jpg</image:loc></image:image>
+    <image:image><image:loc>https://jikoolomo.github.io/lomo-webpage/images/hero-earth.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://jikoolomo.github.io/lomo-webpage/en/</loc>
+    <lastmod>2026-08-26</lastmod>
     <xhtml:link rel="alternate" hreflang="ko" href="https://jikoolomo.github.io/lomo-webpage/ko/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://jikoolomo.github.io/lomo-webpage/en/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://jikoolomo.github.io/lomo-webpage/" />
+    <image:image><image:loc>https://jikoolomo.github.io/lomo-webpage/images/og-image-en.jpg</image:loc></image:image>
+    <image:image><image:loc>https://jikoolomo.github.io/lomo-webpage/images/hero-earth.webp</image:loc></image:image>
   </url>
 </urlset>

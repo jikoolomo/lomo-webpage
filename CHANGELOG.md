@@ -1,5 +1,13 @@
 # LOMO Links 개선 내역
 
+## Open Graph·sitemap·모바일 성능 최적화
+
+한국어·영어 페이지에 각각 1200×630 JPEG Open Graph 이미지를 추가하고 `og:image:width`, `og:image:height`, `og:image:type`, 언어별 `og:locale` 메타를 적용했습니다. 루트·`/ko/`·`/en/` 페이지는 각 언어의 공유 이미지를 사용합니다.
+
+`sitemap.xml`에 모든 언어 URL의 `lastmod`와 이미지 sitemap namespace를 추가하고, 언어별 Open Graph 이미지와 hero 이미지를 연결했습니다.
+
+Google Fonts 외부 CSS 요청을 제거하고 LOMO 문구에 필요한 글리프만 포함한 로컬 WOFF2 폰트를 사용하도록 변경했습니다. 배포 페이지는 `styles.min.css`를 로드하며, hero·Route·waypoint·House 이미지에는 표시 크기에 맞춘 `srcset`·`sizes`와 저해상도 WebP fallback을 적용했습니다. 로컬 Lighthouse 모바일 측정에서 Performance 92, Accessibility 94, Best Practices 100, SEO 100을 확인했습니다.
+
 ## Lighthouse 재검증 및 실제 사진 적용
 
 라이브 GitHub Pages 루트에서 Lighthouse 모바일·데스크톱 전체 감사를 다시 실행했습니다. 기준선 측정 결과 모바일은 Performance 63, Accessibility 94, Best Practices 100, SEO 100이었고, 데스크톱은 Performance 90, Accessibility 94, Best Practices 100, SEO 100이었습니다. 실사용자 필드 데이터가 아닌 Lighthouse 실험실 측정값이며, 모바일 성능의 주요 부담은 이미지 전송량·렌더 차단 CSS·미사용 CSS입니다.

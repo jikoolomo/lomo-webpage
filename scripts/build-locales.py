@@ -19,12 +19,16 @@ META = {
         "title": "Jikoo On · LOMO Links — 지구시민의 리빙 아카이브",
         "description": "사진, 글, 이동 도구와 미래의 테라리움 하우스를 한 기록에 연결하는 Jikoo On과 LOMO의 한국어 living archive.",
         "og_description": "사진·글·이동 도구·테라리움 하우스를 한 기록에 연결하는 Jikoo On과 LOMO의 living archive.",
+        "og_image": "og-image-ko.jpg",
+        "og_locale": "ko_KR",
         "name": "Jikoo On · LOMO Links — 지구시민의 리빙 아카이브",
     },
     "en": {
         "title": "Jikoo On · LOMO Links — Earth Citizen Living Archive",
         "description": "A living archive by Jikoo On connecting photographs, writing, movement tools, and a future terrarium house.",
         "og_description": "A living archive connecting photographs, writing, movement tools, and a future terrarium house.",
+        "og_image": "og-image-en.jpg",
+        "og_locale": "en_US",
         "name": "Jikoo On · LOMO Links — Earth Citizen Living Archive",
     },
 }
@@ -102,10 +106,12 @@ def replace_meta(soup: BeautifulSoup, locale: str, url: str) -> None:
         "og:url": url,
         "og:title": meta["title"],
         "og:description": meta["og_description"],
-        "og:image": f"{SITE}images/hero-earth.webp",
+        "og:image": f"{SITE}images/{meta['og_image']}",
+        "og:locale": meta["og_locale"],
+        "og:locale:alternate": "en_US" if locale == "ko" else "ko_KR",
         "twitter:title": meta["title"],
         "twitter:description": meta["og_description"],
-        "twitter:image": f"{SITE}images/hero-earth.webp",
+        "twitter:image": f"{SITE}images/{meta['og_image']}",
     }
     for key, value in og_values.items():
         attrs = {"property": key} if key.startswith("og:") else {"name": key}
@@ -145,9 +151,17 @@ def rewrite_relative_paths(soup: BeautifulSoup, locale: str) -> None:
     for element in soup.find_all(src=True):
         if element["src"].startswith(("images/", "audio/", "script.js", "locales.js")):
             element["src"] = "../" + element["src"]
+    for element in soup.find_all(srcset=True):
+        candidates = []
+        for candidate in element["srcset"].split(","):
+            parts = candidate.strip().split()
+            if parts and parts[0].startswith(("images/", "audio/", "script.js", "locales.js")):
+                parts[0] = "../" + parts[0]
+            candidates.append(" ".join(parts))
+        element["srcset"] = ", ".join(candidates)
     for element in soup.find_all(href=True):
         href = element["href"]
-        if href in {"styles.css"}:
+        if href in {"styles.css", "styles.min.css"} or href.startswith("fonts/"):
             element["href"] = "../" + href
         elif href == "ko/":
             element["href"] = "../ko/"

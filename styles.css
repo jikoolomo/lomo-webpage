@@ -4,6 +4,14 @@
   coexist in one calm, tactile editorial archive. Saffron is reserved for movement.
 */
 
+@font-face { font-family: "DM Mono"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/dm-mono-400.woff2") format("woff2"); }
+@font-face { font-family: "DM Mono"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/dm-mono-500.woff2") format("woff2"); }
+@font-face { font-family: "Gowun Batang"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/gowun-batang-400.woff2") format("woff2"); }
+@font-face { font-family: "Gowun Batang"; font-style: normal; font-weight: 700; font-display: swap; src: url("fonts/gowun-batang-700.woff2") format("woff2"); }
+@font-face { font-family: "Noto Serif KR"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/noto-serif-kr-400.woff2") format("woff2"); }
+@font-face { font-family: "Noto Serif KR"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/noto-serif-kr-500.woff2") format("woff2"); }
+@font-face { font-family: "Noto Serif KR"; font-style: normal; font-weight: 600; font-display: swap; src: url("fonts/noto-serif-kr-600.woff2") format("woff2"); }
+
 html[data-lang="en"] body:not(.i18n-ready) { visibility: hidden; }
 
 :root {

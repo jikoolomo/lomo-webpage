@@ -56,11 +56,16 @@
     <meta property="og:site_name" content="Jikoo On · LOMO Links" />
     <meta property="og:title" content="Jikoo On · LOMO Links" />
     <meta property="og:description" content="지구 위에서 이동하고 살아가고 만들고 기록하는 방식을 쌓아갑니다." />
-    <meta property="og:image" content="https://jikoolomo.github.io/lomo-webpage/images/hero-earth.webp" />
+    <meta property="og:image" content="https://jikoolomo.github.io/lomo-webpage/images/og-image-ko.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:locale:alternate" content="en_US" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Jikoo On · LOMO Links" />
     <meta name="twitter:description" content="지구 위에서 이동하고 살아가고 만들고 기록하는 방식을 쌓아갑니다." />
-    <meta name="twitter:image" content="https://jikoolomo.github.io/lomo-webpage/images/hero-earth.webp" />
+    <meta name="twitter:image" content="https://jikoolomo.github.io/lomo-webpage/images/og-image-ko.jpg" />
     <script>
       try {
         const replay = new URLSearchParams(location.search).get("intro") === "1";
@@ -70,13 +75,9 @@
         }
       } catch (_) {}
     </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Gowun+Batang:wght@400;700&family=Noto+Serif+KR:wght@400;500;600&display=swap"
-      rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="preload" as="image" href="images/hero-earth.webp" type="image/webp" fetchpriority="high" />
+    <link rel="stylesheet" href="styles.min.css" />
+    <link rel="preload" as="font" href="fonts/gowun-batang-400.woff2" type="font/woff2" crossorigin />
+    <link rel="preload" as="image" href="images/hero-earth.webp" imagesrcset="images/hero-earth-400.webp 400w, images/hero-earth.webp 1200w" imagesizes="(max-width: 600px) 88vw, 390px" type="image/webp" fetchpriority="high" />
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23123f3d'/%3E%3Cpath d='M43 12C27 8 14 19 14 33c0 14 14 23 27 16 8-4 9-17 1-23-5-4-13-1-13 6 0 5 5 8 9 5' fill='none' stroke='%23e8e0cd' stroke-width='4.5' stroke-linecap='round'/%3E%3C/svg%3E" />
     <title>Jikoo On · LOMO Links</title>
   </head>
@@ -164,6 +165,8 @@
         <figure class="hero-polaroid">
             <img
             src="images/hero-earth.webp"
+            srcset="images/hero-earth-400.webp 400w, images/hero-earth.webp 1200w"
+            sizes="(max-width: 600px) 88vw, 390px"
             alt="안개가 감도는 숲과 산의 풍경"
             data-i18n-alt="image.hero"
             loading="eager"
@@ -212,7 +215,7 @@
               <p data-i18n-html="route.body">사진 한 장에서, 빛나는 지구본 위로<br />내 여정이 하나의 영상이 됩니다.</p>
               <b data-i18n="route.cta">앱스토어에서 경로 열기 ↘</b>
             </div>
-            <img class="route-image" src="images/route.webp" alt="자연 속 여행 노트" data-i18n-alt="image.route" loading="lazy" decoding="async" width="1200" height="800" />
+            <img class="route-image" src="images/route-480.webp" srcset="images/route-480.webp 480w, images/route.webp 1200w" sizes="(max-width: 600px) 100vw, 42vw" alt="자연 속 여행 노트" data-i18n-alt="image.route" loading="lazy" decoding="async" width="1200" height="800" />
           </div>
         </a>
 
@@ -220,25 +223,25 @@
           <a class="waypoint sea-waypoint" href="https://www.instagram.com/lomoworldjk/" target="_blank" rel="noreferrer noopener" data-sound-theme="sea">
             <span class="waypoint-number">02</span><span class="waypoint-icon">◎</span>
             <span class="waypoint-title"><small>WAYPOINT 02 / LIGHT ARCHIVE</small><b>Instagram</b><em>@lomoworldjk</em></span>
-            <img class="waypoint-photo sea-photo" src="images/sea.webp" alt="해안의 조수와 모래를 담은 사진" data-i18n-alt="image.sea" loading="lazy" decoding="async" width="1200" height="800" />
+            <img class="waypoint-photo sea-photo" src="images/sea-240.webp" srcset="images/sea-120.webp 120w, images/sea-240.webp 240w, images/sea.webp 1200w" sizes="(max-width: 600px) 60px, (max-width: 860px) 90px, 108px" alt="해안의 조수와 모래를 담은 사진" data-i18n-alt="image.sea" loading="lazy" decoding="async" width="1200" height="800" />
             <span class="waypoint-note" data-i18n="waypoint.instagram.note">서로 다른 빛을 모은 사진 기록</span><span class="waypoint-arrow">↗</span>
           </a>
           <a class="waypoint forest-waypoint" href="https://brunch.co.kr/@eatfear" target="_blank" rel="noreferrer noopener" data-sound-theme="forest">
             <span class="waypoint-number">03</span><span class="waypoint-icon">≋</span>
             <span class="waypoint-title"><small>WAYPOINT 03 / ESSAY STRATUM</small><b>브런치</b><em data-i18n="waypoint.brunch.title">풍경이 지나간 뒤 남는 문장</em></span>
-            <img class="waypoint-photo forest-photo" src="images/forest.webp" alt="안개 낀 숲을 담은 사진" data-i18n-alt="image.forest" loading="lazy" decoding="async" width="1200" height="800" />
+            <img class="waypoint-photo forest-photo" src="images/forest-240.webp" srcset="images/forest-120.webp 120w, images/forest-240.webp 240w, images/forest.webp 1200w" sizes="(max-width: 600px) 60px, (max-width: 860px) 90px, 108px" alt="안개 낀 숲을 담은 사진" data-i18n-alt="image.forest" loading="lazy" decoding="async" width="1200" height="800" />
             <span class="waypoint-note" data-i18n="waypoint.brunch.note">느린 여행을 오래 바라본 에세이</span><span class="waypoint-arrow">↗</span>
           </a>
           <a class="waypoint desert-waypoint" href="https://eatfear.tistory.com/" target="_blank" rel="noreferrer noopener" data-sound-theme="desert">
             <span class="waypoint-number">04</span><span class="waypoint-icon">△</span>
             <span class="waypoint-title"><small>WAYPOINT 04 / FIELD &amp; CITY NOTES</small><b>Tistory</b><em data-i18n="waypoint.tistory.title">도시 · 체류 · 실용 여행 노트</em></span>
-            <img class="waypoint-photo desert-photo" src="images/desert.webp" alt="붉은 사막의 능선을 담은 사진" data-i18n-alt="image.desert" loading="lazy" decoding="async" width="1200" height="800" />
+            <img class="waypoint-photo desert-photo" src="images/desert-240.webp" srcset="images/desert-120.webp 120w, images/desert-240.webp 240w, images/desert.webp 1200w" sizes="(max-width: 600px) 60px, (max-width: 860px) 90px, 108px" alt="붉은 사막의 능선을 담은 사진" data-i18n-alt="image.desert" loading="lazy" decoding="async" width="1200" height="800" />
             <span class="waypoint-note" data-i18n="waypoint.tistory.note">몸으로 배우는 낯선 도시 기록</span><span class="waypoint-arrow">↗</span>
           </a>
         </div>
 
         <button class="house-route" type="button" data-modal-open data-sound-theme="moss" aria-haspopup="dialog" aria-controls="lomo-house-modal">
-          <img class="house-photo" src="images/moss.webp" alt="깊은 숲과 이끼의 풍경" data-i18n-alt="image.house" loading="lazy" decoding="async" width="1200" height="800" />
+          <img class="house-photo" src="images/moss-720.webp" srcset="images/moss-480.webp 480w, images/moss-720.webp 720w, images/moss.webp 1200w" sizes="(max-width: 600px) calc(100vw - 58px), 220px" alt="깊은 숲과 이끼의 풍경" data-i18n-alt="image.house" loading="lazy" decoding="async" width="1200" height="800" />
           <div class="house-copy"><small>05 / LIVING TERRARIUM / FUTURE SHELTER</small><h3>LOMO House</h3><p data-i18n-html="house.teaser">바다의 수분, 사막의 빛, 숲과 이끼의 시간을<br />함께 품을 집의 스케치.</p></div>
           <span class="house-arrow" aria-hidden="true">OPEN ↗</span>
         </button>
@@ -258,7 +261,7 @@
     <div class="modal-backdrop" id="lomo-house-modal" role="dialog" aria-modal="true" aria-labelledby="house-modal-title" aria-describedby="house-modal-description" aria-hidden="true" hidden>
       <section class="house-modal" tabindex="-1">
         <button class="modal-close" type="button" data-modal-close aria-label="LOMO House 상세 창 닫기" data-i18n-aria-label="modal.close"><span data-i18n="modal.closeText">닫기</span> <span>×</span></button>
-        <img class="modal-image" src="images/house.webp" alt="안개와 숲이 공존하는 자연 풍경" data-i18n-alt="image.modal" loading="lazy" decoding="async" width="1200" height="1000" />
+        <img class="modal-image" src="images/house-480.webp" srcset="images/house-480.webp 480w, images/house.webp 1200w" sizes="(max-width: 600px) calc(100vw - 26px), 45vw" alt="안개와 숲이 공존하는 자연 풍경" data-i18n-alt="image.modal" loading="lazy" decoding="async" width="1200" height="1000" />
         <div class="modal-content">
           <p class="modal-kicker">LOMO HOUSE / A FUTURE SHELTER</p>
           <h2 id="house-modal-title" data-i18n-html="modal.title">서로 먼 기후가<br /><i>함께 머무는 집</i></h2>

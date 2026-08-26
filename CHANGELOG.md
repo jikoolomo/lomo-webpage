@@ -44,9 +44,13 @@ GPT 검토에서 지적한 ‘자연·여행·사진’ 중심의 좁은 인상�
 
 `visibilitychange`에서 페이지가 hidden이 되면 모든 트랙을 즉시 pause하고 재생 위치를 초기화합니다. `pagehide`에서도 동일하게 정리해 다른 웹페이지로 이동하거나 문서가 unload되는 경우 음악이 남지 않도록 했습니다. LOMO 페이지로 돌아온 뒤에는 다시 사용자 상호작용이 있을 때 현재 테마의 음원이 재생됩니다.
 
-## SEO 추가 설정
+## SEO 및 다국어 URL 구조
 
-`robots.txt`를 추가하고 `index.html`에 `robots` 메타 태그, Open Graph·Twitter 카드, `WebSite`/`Person` JSON-LD를 추가했습니다. 실제 GitHub Pages 도메인이 아직 확정되지 않았으므로 canonical URL과 `sitemap.xml`은 의도적으로 넣지 않았으며, 배포 주소 확정 후 추가해야 합니다.
+Route Studio, Waypoint, LOMO House, 모달의 의미 있는 CSS 배경 이미지를 시맨틱 `<img>`로 전환했습니다. 이미지마다 언어별 alt 텍스트, 실제 width·height, `loading="lazy"`, `decoding="async"`를 적용했고 hero에는 `loading="eager"`와 `fetchpriority="high"`를 유지했습니다. 이미지 중복 요청을 만들던 CSS background-image 규칙도 제거했습니다.
+
+`locales.json`을 번역 원본으로 추가하고 `scripts/build-locales.py`를 통해 `/ko/index.html`과 `/en/index.html`을 생성합니다. 각 언어 페이지는 언어별 title·description·Open Graph·Twitter 메타, canonical, `WebSite`·`WebPage`·`Person` JSON-LD, `ko`·`en`·`x-default` hreflang을 가집니다. GitHub Actions workflow는 배포 전에 로케일 페이지를 자동 생성합니다.
+
+`sitemap.xml`은 루트·`/ko/`·`/en/`을 모두 포함하고 다국어 대체 링크를 선언합니다. `README.md`와 `SEO-SETUP.md`에도 새 구조와 운영 방법을 반영했습니다.
 
 ## 렌더링 미리보기
 

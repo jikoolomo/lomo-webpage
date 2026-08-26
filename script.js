@@ -36,7 +36,7 @@ const introScenes = [
   { theme: "moss", number: "04 / 04", ko: "이끼의 시간에<br>귀를 기울입니다.", en: "Listening<br>to moss time.", english: "MOSS / MIST / TIME" },
 ];
 
-const translations = {
+const translations = window.LOMO_TRANSLATIONS || {
   ko: {
     "language.group": "언어 선택", "language.ko": "한국어", "language.en": "영어",
     "header.climates": "○ 바다 · 숲 · 사막 · 이끼숲", "brand.home": "Jikoo On 홈으로 이동",
@@ -150,9 +150,11 @@ function applyLanguage(language, persist = true) {
     else element.textContent = t(key);
   });
   document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => { element.setAttribute("aria-label", t(element.dataset.i18nAriaLabel)); });
+  document.querySelectorAll("[data-i18n-alt]").forEach((element) => { element.setAttribute("alt", t(element.dataset.i18nAlt)); });
   document.querySelectorAll("[data-language]").forEach((button) => {
     const selected = button.dataset.language === language;
-    button.setAttribute("aria-pressed", String(selected));
+    if (selected) button.setAttribute("aria-current", "page");
+    else button.removeAttribute("aria-current");
     button.setAttribute("aria-label", t(`language.${button.dataset.language}`));
   });
   if (intro && !intro.hidden) setIntroScene([...introScenes].findIndex((scene) => scene.theme === intro.dataset.theme));

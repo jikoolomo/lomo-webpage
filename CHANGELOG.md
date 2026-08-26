@@ -1,5 +1,11 @@
 # LOMO Links 개선 내역
 
+## Lighthouse 재검증 및 실제 사진 적용
+
+라이브 GitHub Pages 루트에서 Lighthouse 모바일·데스크톱 전체 감사를 다시 실행했습니다. 기준선 측정 결과 모바일은 Performance 63, Accessibility 94, Best Practices 100, SEO 100이었고, 데스크톱은 Performance 90, Accessibility 94, Best Practices 100, SEO 100이었습니다. 실사용자 필드 데이터가 아닌 Lighthouse 실험실 측정값이며, 모바일 성능의 주요 부담은 이미지 전송량·렌더 차단 CSS·미사용 CSS입니다.
+
+`sample/`의 실제 촬영본을 검토한 결과 `GPTempDownload 6.jpg`의 manta ray·산호초 장면을 `images/sea.webp`로, `IMG_8982.heic`의 이끼 낀 산책로를 `images/forest.webp`로 각각 1200×800 WebP로 크롭·최적화했습니다. 이에 맞춰 한국어·영어 이미지 alt 텍스트를 업데이트했습니다. 히어로, Route Studio, 사막 waypoint, LOMO House는 샘플 사진이 해당 역할을 명확히 개선하지 못해 기존 이미지를 유지했습니다.
+
 ## 배포 안정성
 
 오디오 소스를 `/manus-storage/` 절대 경로에서 `audio/` 상대 경로로 변경했습니다. 이제 `audio/` 폴더를 웹페이지와 함께 GitHub Pages 배포 루트에 업로드하면 자연음 파일을 찾을 수 있습니다.

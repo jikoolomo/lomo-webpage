@@ -1,0 +1,43 @@
+# Global security headers for all paths
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# HTML files and localized routes - Instant updates
+/
+  Cache-Control: public, max-age=0, must-revalidate
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+/ko/*
+  Cache-Control: public, max-age=0, must-revalidate
+/en/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+# CSS & JavaScript - 1 day edge cache with stale-while-revalidate
+/styles.css
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+/styles.min.css
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+/script.js
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+/locales.js
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+/locales.json
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+# Fonts - 1 year immutable cache
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+# Audio files (MP3) - 1 year immutable cache & byte-range streaming support
+/audio/*
+  Cache-Control: public, max-age=31536000, immutable
+  Accept-Ranges: bytes
+  Access-Control-Allow-Origin: *
+
+# Image assets (WebP/JPG) - 1 year immutable cache
+/images/*
+  Cache-Control: public, max-age=31536000, immutable

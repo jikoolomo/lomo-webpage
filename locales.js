@@ -80,6 +80,8 @@ window.LOMO_TRANSLATIONS = {
     "archive.tistory": "Living / City / Practical Field Notes",
     "archive.lomoEarth": "LOMO World / House / Experiments",
     "archive.threads": "Follow the next field note",
+    "house.titleNew": "LOMO House",
+    "house.openModal": "HOUSE 스케치 열기 ↗",
     "sound.on": "자연 배경음 끄기",
     "sound.off": "자연 배경음 켜기"
   },
@@ -165,6 +167,8 @@ window.LOMO_TRANSLATIONS = {
     "archive.brunch": "Essays / Earth Citizen",
     "archive.tistory": "Living / City / Practical Field Notes",
     "archive.lomoEarth": "LOMO World / House / Experiments",
-    "archive.threads": "Follow the next field note"
+    "archive.threads": "Follow the next field note",
+    "house.titleNew": "LOMO House",
+    "house.openModal": "OPEN HOUSE SKETCH ↗"
   }
 };

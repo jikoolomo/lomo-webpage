@@ -28,7 +28,7 @@ let activeSoundTheme = "moss";
 let soundFadeTimer = null;
 let soundPreferencePrimed = false;
 let introInterval = null;
-const fieldNotes=[{category:"EARTH CITIZEN / LIVING",titleKo:"동남아에서 한 달 살아본다면 어디가 좋을까",titleEn:"Where should you live in Southeast Asia for a month?",descriptionKo:"도시의 속도와 동네의 리듬을 직접 살아본 기록.",descriptionEn:"A field note on city pace, neighborhood rhythm, and staying awhile.",location:"SOUTHEAST ASIA",date:"FIELD NOTE 01",source:"Tistory",url:"https://eatfear.tistory.com/",image:"images/desert-240.webp"},{category:"WATER / EXPERIENCE",titleKo:"물을 무서워하던 사람이 다이버가 되기까지",titleEn:"From being afraid of water to becoming a diver",descriptionKo:"두려움을 지나 바다에 들어가며 배운 것들.",descriptionEn:"What the water taught me after fear stopped being the whole story.",location:"THE WATER",date:"FIELD NOTE 02",source:"Instagram",url:"https://www.instagram.com/jikookim/",image:"images/sea-240.webp"},{category:"CITY / CONNECTION",titleKo:"혼자 다낭에 가서 사람을 만나는 방법",titleEn:"How to meet people when you travel alone",descriptionKo:"낯선 도시에서 관계를 시작하는 작고 구체적인 방법.",descriptionEn:"Small, practical ways to begin a connection in an unfamiliar city.",location:"DA NANG",date:"FIELD NOTE 03",source:"Brunch",url:"https://brunch.co.kr/@eatfear",image:"images/forest-240.webp"}];
+const fieldNotes=[{category:"EARTH CITIZEN / LIVING",theme:"desert",titleKo:"동남아에서 한 달 살아본다면 어디가 좋을까",titleEn:"Where should you live in Southeast Asia for a month?",descriptionKo:"도시의 속도와 동네의 리듬을 직접 살아본 기록.",descriptionEn:"A field note on city pace, neighborhood rhythm, and staying awhile.",location:"SOUTHEAST ASIA",date:"FIELD NOTE 01",source:"Tistory",url:"https://eatfear.tistory.com/",image:"images/desert-240.webp"},{category:"WATER / EXPERIENCE",theme:"sea",titleKo:"물을 무서워하던 사람이 다이버가 되기까지",titleEn:"From being afraid of water to becoming a diver",descriptionKo:"두려움을 지나 바다에 들어가며 배운 것들.",descriptionEn:"What the water taught me after fear stopped being the whole story.",location:"THE WATER",date:"FIELD NOTE 02",source:"Instagram",url:"https://www.instagram.com/jikookim/",image:"images/sea-240.webp"},{category:"CITY / CONNECTION",theme:"forest",titleKo:"혼자 다낭에 가서 사람을 만나는 방법",titleEn:"How to meet people when you travel alone",descriptionKo:"낯선 도시에서 관계를 시작하는 작고 구체적인 방법.",descriptionEn:"Small, practical ways to begin a connection in an unfamiliar city.",location:"DA NANG",date:"FIELD NOTE 03",source:"Brunch",url:"https://brunch.co.kr/@eatfear",image:"images/forest-240.webp"}];
 const fadeHandles = new WeakMap();
 const INTRO_SCENE_DURATION = 1050;
 const introScenes = [
@@ -72,7 +72,20 @@ let currentLanguage = document.documentElement.dataset.lang === "en" ? "en" : "k
 let introTimer = null;
 
 function assetPath(path){return /\/(ko|en)\/$/.test(window.location.pathname)?`../${path}`:path}
-function renderFieldNotes(){const target=document.querySelector("[data-field-notes]");if(!target)return;const lang=currentLanguage==="en"?"en":"ko";target.innerHTML=fieldNotes.map(n=>`<a class="field-note" data-track="field-note" href="${n.url}" rel="noreferrer noopener" target="_blank"><img class="field-note-image" loading="lazy" width="640" height="360" src="${assetPath(n.image)}" alt="${n[lang==="en"?"titleEn":"titleKo"]}"><div class="field-note-copy"><div class="field-note-meta"><span>${n.category}</span><span>${n.date}</span></div><h3>${n[lang==="en"?"titleEn":"titleKo"]}</h3><p>${n[lang==="en"?"descriptionEn":"descriptionKo"]}</p><div class="field-note-footer"><span>${n.location} / ${n.source}</span><span>READ ↗</span></div></div></a>`).join("")}
+function renderFieldNotes(){
+  const target=document.querySelector("[data-field-notes]");
+  if(!target)return;
+  const lang=currentLanguage==="en"?"en":"ko";
+  target.innerHTML=fieldNotes.map(n=>`<a class="field-note" data-sound-theme="${n.theme}" data-track="field-note" href="${n.url}" rel="noreferrer noopener" target="_blank"><img class="field-note-image" loading="lazy" width="640" height="360" src="${assetPath(n.image)}" alt="${n[lang==="en"?"titleEn":"titleKo"]}"><div class="field-note-copy"><div class="field-note-meta"><span>${n.category}</span><span>${n.date}</span></div><h3>${n[lang==="en"?"titleEn":"titleKo"]}</h3><p>${n[lang==="en"?"descriptionEn":"descriptionKo"]}</p><div class="field-note-footer"><span>${n.location} / ${n.source}</span><span>READ ↗</span></div></div></a>`).join("");
+  target.querySelectorAll("[data-sound-theme]").forEach(el => {
+    const fn = () => setAmbientTheme(el.dataset.soundTheme);
+    el.addEventListener("mouseenter", fn);
+    el.addEventListener("focusin", fn);
+  });
+  target.querySelectorAll("[data-track]").forEach(el => {
+    el.addEventListener("click", () => trackEvent(el.dataset.track, { href: el.href || "" }));
+  });
+}
 function applySiteConfig(){document.querySelectorAll("[data-config-key]").forEach(e=>{const v=siteConfig[e.dataset.configKey]||"";if(!v){e.hidden=true;return}if(e.tagName==="A"){e.href=v;e.rel="noreferrer noopener";e.target="_blank"}})}
 function trackEvent(name,metadata={}){if(typeof window.LOMO_ANALYTICS==="function")window.LOMO_ANALYTICS(name,metadata)}
 

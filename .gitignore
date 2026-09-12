@@ -3,3 +3,4 @@
 sample/
 make_sample_contact_sheet.py
 dist/
+.venv/

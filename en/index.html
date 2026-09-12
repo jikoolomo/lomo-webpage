@@ -90,7 +90,9 @@
       try {
         const replay = new URLSearchParams(location.search).get("intro") === "1";
         const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-        if ((replay || !localStorage.getItem("lomo-intro-seen")) && !reduced) {
+        const params = new URLSearchParams(location.search);
+        const socialSource = /^(ig|instagram|threads|brunch|tistory)$/i.test(params.get("utm_source") || "") || /social/i.test(params.get("utm_medium") || "");
+        if ((replay || (!socialSource && !localStorage.getItem("lomo-intro-seen"))) && !reduced) {
           document.documentElement.classList.add("intro-pending");
         }
       } catch (_) {}
@@ -151,42 +153,16 @@
 </div>
 </div>
 </header>
-<section aria-labelledby="page-title" class="hero wrap">
-<aside aria-label="기록의 시작" class="origin-rail">
-<span>01</span><i></i><span>ORIGIN NOTE</span>
-</aside>
-<div class="hero-copy">
-<div class="meta-line">
-<span>JIKOO ON / THE OBSERVER</span>
-<span>LOMO TERRARIUM · BEGIN DEC 2022</span>
-</div>
-<h1 data-i18n-html="hero.title" id="page-title">I grow distant<br/>landscapes slowly<br/><i>in one record.</i></h1>
-<p class="english-line" data-i18n="hero.english">A citizen of Earth, holding distant climates together.</p>
-<div class="rule"></div>
-<p class="origin-quote" data-i18n-html="hero.origin">I was afraid of water.<br/><strong>Now I’m a diver.</strong></p>
-<p class="intro-body" data-i18n="hero.body">Since December 2022, I have been gathering the sensations of different environments through photographs and writing. Landscapes that are not easily placed together—sea, forest, desert, and moss—have become the imagination behind LOMO Route Studio and a terrarium house I hope to build one day.</p>
-<div aria-label="LOMO’s core climates" class="fact-line" data-i18n-aria-label="hero.factLabel">
-<span>BEGIN / DEC 2022</span><i></i><span>SEA ↔ FOREST</span><i></i><span>DESERT ↔ MOSS</span>
-</div>
-</div>
-<figure class="hero-polaroid">
-<img alt="A misty forest and mountain landscape" data-i18n-alt="image.hero" decoding="async" fetchpriority="high" loading="eager" sizes="(max-width: 600px) 88vw, 390px" src="../images/hero-earth.webp" srcset="../images/hero-earth-400.webp 400w, ../images/hero-earth.webp 1200w"/>
-<figcaption><span>FIELD NOTE / EARTH</span><span>shared climates</span></figcaption>
-<div aria-label="LOMO가 품는 생태계" class="biome-strip">
-<span class="sea">SEA / SALT</span><span class="forest">FOREST / ROOT</span><span class="desert">DESERT / DUST</span><span class="moss">MOSS / MIST</span>
-</div>
-<span aria-label="북쪽을 가리키는 나침반" class="north">
-<b>N</b>
-<svg aria-hidden="true" viewbox="0 0 48 48">
-<path d="M24 7 29 24 24 41 19 24 24 7Z" fill="currentColor" opacity=".2"></path>
-<path d="M24 7 29 24 24 24Z" fill="currentColor"></path>
-<path d="M24 41 19 24 24 24Z" fill="currentColor" opacity=".42"></path>
-<circle cx="24" cy="24" fill="currentColor" r="2.2"></circle>
-</svg>
-</span>
-</figure>
-</section>
-<section aria-labelledby="waypoints-title" class="waypoints wrap">
+<section aria-labelledby="page-title" class="hero hero-new wrap"><div class="hero-copy"><p class="eyebrow" data-i18n="hero.eyebrow">JIKOO ON / EARTH CITIZEN</p><h1 data-i18n-html="hero.titleNew" id="page-title">여행지를 찾는 게 아니라,<br/>나에게 맞는 <i>삶의 장소</i>를 찾습니다.</h1><p class="hero-lead" data-i18n="hero.bodyNew">지구 위 여러 도시에서 직접 살아보고, 이동하고, 사람을 만나고, 바다에 들어가고, 그 과정에서 알게 된 것들을 기록합니다.</p><p class="hero-lead hero-lead-secondary" data-i18n="hero.bodySecondary">그리고 그 경험으로 새로운 도구를 만듭니다.</p><div class="hero-actions"><a class="button button-primary" data-track="hero-earth-citizen" href="#explore" data-i18n="hero.primary">EARTH CITIZEN에서 시작하기 ↘</a><a class="button button-secondary" data-track="hero-route-studio" href="#route-studio" data-i18n="hero.secondary">내 여행을 ROUTE로 만들기 ↗</a></div><p class="geo-line">VIETNAM · THAILAND · PHILIPPINES · INDONESIA · LAOS · JAPAN · USA</p><p class="origin-quote" data-i18n-html="hero.origin">물이 무서웠습니다.<br/><strong>지금은 다이버입니다.</strong></p></div><figure class="hero-polaroid"><img alt="안개가 감도는 숲과 산의 풍경" data-i18n-alt="image.hero" decoding="async" fetchpriority="high" loading="eager" sizes="(max-width: 600px) 88vw, 390px" src="../images/hero-earth.webp" srcset="../images/hero-earth-400.webp 400w, ../images/hero-earth.webp 1200w"/><figcaption><span>FIELD NOTE / EARTH</span><span>shared climates</span></figcaption><div class="biome-strip"><span class="sea">SEA / SALT</span><span class="forest">FOREST / ROOT</span><span class="desert">DESERT / DUST</span><span class="moss">MOSS / MIST</span></div></figure></section>
+
+<section aria-labelledby="explore-title" class="section-block explore-section wrap" id="explore"><div class="section-heading"><p>SECTION 02 / FIELD DIRECTIONS</p><h2 data-i18n="explore.title" id="explore-title">WHAT ARE YOU LOOKING FOR?</h2><span data-i18n="explore.lead">하나의 플랫폼이 아니라, 지금 당신이 궁금한 방향에서 시작하세요.</span></div><div class="explore-grid"><a class="explore-card sea-card" href="#waypoints-title"><span class="card-index">01 / LIVE</span><h3 data-i18n="explore.live.title">어디에서 살아볼까</h3><p data-i18n="explore.live.body">도시 · 한달살기 · 생활비 · 날씨 · 동네 · 장기체류</p><span class="card-arrow">↘</span></a><a class="explore-card forest-card" href="#waypoints-title"><span class="card-index">02 / MOVE</span><h3 data-i18n="explore.move.title">어떻게 이동할까</h3><p data-i18n="explore.move.body">국경 · 항공 · 버스 · 비자 · 이동 · 여행 준비</p><span class="card-arrow">↘</span></a><a class="explore-card desert-card" href="#waypoints-title"><span class="card-index">03 / CONNECT</span><h3 data-i18n="explore.connect.title">낯선 곳에서 어떻게 살아갈까</h3><p data-i18n="explore.connect.body">혼자 여행 · 사람 만나기 · 관계 · 커뮤니티 · 현지생활</p><span class="card-arrow">↘</span></a><a class="explore-card moss-card" href="#waypoints-title"><span class="card-index">04 / EXPLORE</span><h3 data-i18n="explore.explore.title">무엇을 경험할까</h3><p data-i18n="explore.explore.body">다이빙 · 서핑 · 섬 · 바다 · 자연 · 모험</p><span class="card-arrow">↘</span></a><a class="explore-card make-card" href="#waypoints-title"><span class="card-index">05 / MAKE / RECORD</span><h3 data-i18n="explore.make.title">경험을 어떻게 남길까</h3><p data-i18n="explore.make.body">사진 · 글 · LOMO Route Studio · 만들기</p><span class="card-arrow">↘</span></a></div></section>
+<section aria-labelledby="field-notes-title" class="section-block field-notes-section wrap" id="field-notes"><div class="section-heading"><p>SECTION 03 / LIVING ARCHIVE</p><h2 data-i18n="notes.title" id="field-notes-title">LATEST FIELD NOTES</h2><span data-i18n="notes.lead">최근 현장 기록. 플랫폼보다 먼저, 경험과 문장을 만납니다.</span></div><div aria-live="polite" class="field-notes-grid" data-field-notes></div></section>
+<section aria-labelledby="route-title" class="route-feature section-block wrap" id="route-studio"><div class="route-feature-copy"><p class="eyebrow">LOMO / ROUTE TOOL</p><h2 data-i18n-html="route.titleNew" id="route-title">여행이 끝난 뒤에도<br/><i>당신이 움직인 길은 남습니다.</i></h2><p data-i18n="route.bodyNew">여행 사진 속 시간과 위치를 읽어, 당신이 지구 위에서 움직인 경로를 하나의 영상으로 만듭니다.</p><a class="button button-route" data-track="route-studio-appstore" href="https://apps.apple.com/app/id6782547819" rel="noreferrer noopener" target="_blank" data-i18n="route.ctaNew">APP STORE에서 무료로 시작하기 ↗</a><small>YOUR PHOTOS → YOUR ROUTE → YOUR STORY</small></div><img alt="자연 속 여행 노트" data-i18n-alt="image.route" decoding="async" height="800" loading="lazy" sizes="(max-width: 600px) 100vw, 42vw" src="../images/route-480.webp" srcset="../images/route-480.webp 480w, ../images/route.webp 1200w" width="1200"/></section>
+<section aria-labelledby="story-title" class="story-section section-block wrap"><div class="story-mark">FIELD<br/>NOTE<br/><span>05</span></div><div><p class="eyebrow">SECTION 05 / THE OBSERVER</p><h2 data-i18n="story.title" id="story-title">물이 무서웠습니다.<br/><i>지금은 다이버입니다.</i></h2><p data-i18n="story.body">처음부터 자유롭게 여행했던 것도, 처음부터 무언가를 만들 줄 알았던 것도 아닙니다. 낯선 도시에서 살아보고, 바다에 들어가고, 국경을 넘고, 그 경험을 사진과 글로 기록했습니다.</p><p data-i18n="story.body2">어느 순간 기록하는 것만으로는 부족해서 직접 도구를 만들기 시작했습니다. Jikoo On은 완성된 삶이 아니라, 지구 위에서 더 잘 살아가는 방법을 계속 실험하는 기록입니다.</p><div class="story-flow">MOVE <i>→</i> LIVE <i>→</i> EXPERIENCE <i>→</i> MAKE <i>→</i> RECORD</div></div></section>
+<section aria-labelledby="letter-title" class="letter-section section-block wrap"><div><p class="eyebrow">SECTION 06 / EARTH CITIZEN</p><h2 data-i18n="letter.title" id="letter-title">EARTH CITIZEN<br/><i>FIELD LETTER</i></h2><p data-i18n="letter.body">한 달에 두 번.<br/>직접 살아본 도시 하나,<br/>그곳에서 배운 것 하나,<br/>그리고 다음 이동 하나.</p></div><div class="empty-cta" data-config-key="newsletterUrl"><span data-i18n="letter.comingSoon">FIELD LETTER / COMING SOON</span></div></section>
+<section aria-labelledby="work-title" class="work-section section-block wrap"><div><p class="eyebrow">FIELD COLLABORATION</p><h2 data-i18n="work.title" id="work-title">WORK WITH JIKOO</h2><p class="work-tags">Hotels · Coliving · Diving · Surf · Travel · Outdoor</p><p data-i18n="work.body">실제로 머물고 경험한 장소를 사진, 영상, 글로 기록합니다.</p></div><div class="config-actions"><a class="button button-secondary config-link" data-config-key="creatorPortfolioUrl" data-track="creator-portfolio" data-i18n="work.portfolio">VIEW CREATOR PORTFOLIO ↗</a><a class="button button-secondary config-link" data-config-key="collaborationUrl" data-track="creator-collaboration" data-i18n="work.collaboration">COLLABORATION ↗</a></div></section>
+<section aria-labelledby="archive-title" class="archive-section section-block wrap" id="archive"><div class="section-heading"><p>SECTION 08 / FOLLOW THE RECORDS</p><h2 data-i18n="archive.title" id="archive-title">ARCHIVE / FOLLOW THE RECORDS</h2></div><div class="archive-grid"><a data-track="instagram" href="https://www.instagram.com/jikookim/" rel="noreferrer noopener" target="_blank"><span>INSTAGRAM</span><b data-i18n="archive.instagram">Light / Life / Visual Field Notes</b> ↗</a><a data-track="brunch" href="https://brunch.co.kr/@eatfear" rel="noreferrer noopener" target="_blank"><span>BRUNCH</span><b data-i18n="archive.brunch">Essays / Earth Citizen</b> ↗</a><a data-track="tistory" href="https://eatfear.tistory.com/" rel="noreferrer noopener" target="_blank"><span>TISTORY</span><b data-i18n="archive.tistory">Living / City / Practical Field Notes</b> ↗</a><a href="https://www.instagram.com/lomo.earth/" rel="noreferrer noopener" target="_blank"><span>LOMO EARTH</span><b data-i18n="archive.lomoEarth">LOMO World / House / Experiments</b> ↗</a><a class="config-link" data-config-key="threadsUrl" data-track="threads"><span>THREADS</span><b data-i18n="archive.threads">Follow the next field note</b> ↗</a></div></section>
+<section aria-labelledby="waypoints-title" id="legacy-archive" class="waypoints wrap">
 <div class="section-heading">
 <p>LOMO ECOSYSTEM / WAYS TO FOLLOW</p>
 <h2 data-i18n="ecosystem.title" id="waypoints-title">The ecology of records</h2>
@@ -266,6 +242,7 @@
 </div>
 </section>
 </div>
+<script>window.LOMO_SITE_CONFIG={threadsUrl:"",newsletterUrl:"",creatorPortfolioUrl:"",collaborationUrl:"",businessEmail:""};</script>
 <script defer="" src="../locales.js"></script>
 <script defer="" src="../script.js"></script>
 <!-- Cloudflare Web Analytics -->

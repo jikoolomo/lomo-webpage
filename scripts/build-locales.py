@@ -2,8 +2,10 @@
 """Build crawlable Korean and English variants from the LOMO base document."""
 from __future__ import annotations
 
+import argparse
 import json
 import re
+import shutil
 from copy import deepcopy
 from pathlib import Path
 
@@ -11,66 +13,36 @@ from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = "https://jikoolomo.github.io/lomo-webpage/"
-BASE_HTML = ROOT / "index.html"
-LOCALES = ROOT / "locales.json"
 
 META = {
     "ko": {
-        "title": "Jikoo On · LOMO Links — 지구시민의 리빙 아카이브",
-        "description": "사진, 글, 이동 도구와 미래의 테라리움 하우스를 한 기록에 연결하는 Jikoo On과 LOMO의 한국어 living archive.",
-        "og_description": "사진·글·이동 도구·테라리움 하우스를 한 기록에 연결하는 Jikoo On과 LOMO의 living archive.",
+        "title": "Jikoo On · Earth Citizen | 여행하며 살아보고 만드는 기록",
+        "description": "여러 나라와 도시에서 직접 살아보고 이동하며 배운 것을 기록하는 Jikoo On의 Earth Citizen 아카이브. 여행·한달살기·바다·사진·LOMO Route Studio.",
+        "og_description": "여행·사진·바다·LOMO Route Studio를 기록하는 Jikoo On의 Earth Citizen living archive.",
         "og_image": "og-image-ko.jpg",
         "og_locale": "ko_KR",
-        "name": "Jikoo On · LOMO Links — 지구시민의 리빙 아카이브",
+        "name": "Jikoo On · Earth Citizen | 여행하며 살아보고 만드는 기록",
     },
     "en": {
-        "title": "Jikoo On · LOMO Links — Earth Citizen Living Archive",
-        "description": "A living archive by Jikoo On connecting photographs, writing, movement tools, and a future terrarium house.",
-        "og_description": "A living archive connecting photographs, writing, movement tools, and a future terrarium house.",
+        "title": "Jikoo On · Earth Citizen | Living, Moving & Making Around the World",
+        "description": "Jikoo On's Earth Citizen archive — living across cities, moving across borders, entering the water, recording the journey and building tools from experience.",
+        "og_description": "An Earth Citizen archive of living across cities, moving across borders, entering the water, and building from experience.",
         "og_image": "og-image-en.jpg",
         "og_locale": "en_US",
-        "name": "Jikoo On · LOMO Links — Earth Citizen Living Archive",
+        "name": "Jikoo On · Earth Citizen | Living, Moving & Making Around the World",
     },
 }
+
+COPY_ITEMS = ("styles.css", "styles.min.css", "script.js", "locales.json", "robots.txt", "sitemap.xml", "_headers", "audio", "fonts", "images")
 
 
 def jsonld(locale: str, url: str) -> str:
     graph = {
         "@context": "https://schema.org",
         "@graph": [
-            {
-                "@type": "WebSite",
-                "@id": f"{SITE}#website",
-                "url": SITE,
-                "name": "Jikoo On · LOMO Links",
-                "description": META[locale]["description"],
-                "inLanguage": locale,
-            },
-            {
-                "@type": "WebPage",
-                "@id": f"{url}#webpage",
-                "url": url,
-                "name": META[locale]["name"],
-                "description": META[locale]["description"],
-                "inLanguage": locale,
-                "isPartOf": {"@id": f"{SITE}#website"},
-                "about": {"@id": f"{SITE}#person"},
-                "primaryImageOfPage": {
-                    "@type": "ImageObject",
-                    "url": f"{SITE}images/hero-earth.webp",
-                },
-            },
-            {
-                "@type": "Person",
-                "@id": f"{SITE}#person",
-                "name": "Jikoo On",
-                "alternateName": "지쿠 On",
-                "sameAs": [
-                    "https://www.instagram.com/jikookim/",
-                    "https://brunch.co.kr/@eatfear",
-                    "https://eatfear.tistory.com/",
-                ],
-            },
+            {"@type": "WebSite", "@id": f"{SITE}#website", "url": SITE, "name": "Jikoo On · LOMO Links", "description": META[locale]["description"], "inLanguage": locale},
+            {"@type": "WebPage", "@id": f"{url}#webpage", "url": url, "name": META[locale]["name"], "description": META[locale]["description"], "inLanguage": locale, "isPartOf": {"@id": f"{SITE}#website"}, "about": {"@id": f"{SITE}#person"}, "primaryImageOfPage": {"@type": "ImageObject", "url": f"{SITE}images/hero-earth.webp"}},
+            {"@type": "Person", "@id": f"{SITE}#person", "name": "Jikoo On", "alternateName": "지쿠 On", "sameAs": ["https://www.instagram.com/jikookim/", "https://brunch.co.kr/@eatfear", "https://eatfear.tistory.com/"]},
         ],
     }
     return json.dumps(graph, ensure_ascii=False, indent=2)
@@ -80,45 +52,24 @@ def replace_meta(soup: BeautifulSoup, locale: str, url: str) -> None:
     meta = META[locale]
     soup.html["lang"] = locale
     soup.html["data-static-lang"] = locale
-
     description = soup.find("meta", attrs={"name": "description"})
     if description:
         description["content"] = meta["description"]
-
     title = soup.find("title")
     if title:
         title.string = meta["title"]
-
     canonical = soup.find("link", attrs={"rel": "canonical"})
     if canonical:
         canonical["href"] = url
-
     for link in soup.find_all("link", attrs={"rel": "alternate"}):
         hreflang = link.get("hreflang")
-        if hreflang == "ko":
-            link["href"] = f"{SITE}ko/"
-        elif hreflang == "en":
-            link["href"] = f"{SITE}en/"
-        elif hreflang == "x-default":
-            link["href"] = SITE
-
-    og_values = {
-        "og:url": url,
-        "og:title": meta["title"],
-        "og:description": meta["og_description"],
-        "og:image": f"{SITE}images/{meta['og_image']}",
-        "og:locale": meta["og_locale"],
-        "og:locale:alternate": "en_US" if locale == "ko" else "ko_KR",
-        "twitter:title": meta["title"],
-        "twitter:description": meta["og_description"],
-        "twitter:image": f"{SITE}images/{meta['og_image']}",
-    }
+        link["href"] = {"ko": f"{SITE}ko/", "en": f"{SITE}en/", "x-default": SITE}.get(hreflang, link.get("href"))
+    og_values = {"og:url": url, "og:title": meta["title"], "og:description": meta["og_description"], "og:image": f"{SITE}images/{meta['og_image']}", "og:locale": meta["og_locale"], "og:locale:alternate": "en_US" if locale == "ko" else "ko_KR", "twitter:title": meta["title"], "twitter:description": meta["og_description"], "twitter:image": f"{SITE}images/{meta['og_image']}"}
     for key, value in og_values.items():
         attrs = {"property": key} if key.startswith("og:") else {"name": key}
         tag = soup.find("meta", attrs=attrs)
         if tag:
             tag["content"] = value
-
     jsonld_tag = soup.find("script", attrs={"type": "application/ld+json"})
     if jsonld_tag:
         jsonld_tag.string = "\n" + jsonld(locale, url) + "\n"
@@ -167,35 +118,50 @@ def rewrite_relative_paths(soup: BeautifulSoup, locale: str) -> None:
             element["href"] = "../ko/"
         elif href == "en/":
             element["href"] = "../en/"
-    for element in soup.select('[data-language]'):
-        language = element.get("data-language")
-        if language == locale:
+    for element in soup.select("[data-language]"):
+        if element.get("data-language") == locale:
             element["aria-current"] = "page"
         else:
             element.attrs.pop("aria-current", None)
 
 
-def locale_from_html(soup: BeautifulSoup) -> str:
-    return soup.html.get("data-static-lang", "ko")
+def prepare_output(output: Path) -> None:
+    if output.resolve() == ROOT.resolve():
+        return
+    if output.exists():
+        shutil.rmtree(output)
+    output.mkdir(parents=True)
+    shutil.copy2(ROOT / "index.html", output / "index.html")
+    for item in COPY_ITEMS:
+        source = ROOT / item
+        destination = output / item
+        if source.is_dir():
+            shutil.copytree(source, destination)
+        else:
+            shutil.copy2(source, destination)
 
 
 def main() -> None:
-    translations = json.loads(LOCALES.read_text(encoding="utf-8"))
-    source = BASE_HTML.read_text(encoding="utf-8")
-    (ROOT / "locales.js").write_text(
-        "window.LOMO_TRANSLATIONS = " + json.dumps(translations, ensure_ascii=False, indent=2) + ";\n",
-        encoding="utf-8",
-    )
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output-dir", type=Path, default=ROOT, help="Clean output directory; defaults to the repository root")
+    args = parser.parse_args()
+    output = args.output_dir.resolve()
+    prepare_output(output)
+    base_html = output / "index.html"
+    locales_path = output / "locales.json"
+    translations = json.loads(locales_path.read_text(encoding="utf-8"))
+    (output / "locales.js").write_text("window.LOMO_TRANSLATIONS = " + json.dumps(translations, ensure_ascii=False, indent=2) + ";\n", encoding="utf-8")
+    source = base_html.read_text(encoding="utf-8")
     for locale in ("ko", "en"):
         soup = BeautifulSoup(source, "html.parser")
         url = f"{SITE}{locale}/"
         replace_meta(soup, locale, url)
         translate_document(soup, locale, translations)
         rewrite_relative_paths(soup, locale)
-        target = ROOT / locale / "index.html"
+        target = output / locale / "index.html"
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text("<!doctype html>\n" + str(soup), encoding="utf-8")
-        print(f"wrote {target.relative_to(ROOT)}")
+        print(f"wrote {target.relative_to(output)}")
 
 
 if __name__ == "__main__":

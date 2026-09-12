@@ -37,12 +37,12 @@ jobs:
       - name: Build localized pages
         run: |
           python -m pip install --disable-pip-version-check --no-input beautifulsoup4
-          python scripts/build-locales.py
+          python scripts/build-locales.py --output-dir dist
 
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: dist
 
       - name: Deploy to GitHub Pages
         id: deployment

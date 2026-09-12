@@ -1,10 +1,20 @@
 # LOMO Links — GitHub Pages 소스
 
-이 폴더는 **순수 HTML과 CSS만으로 만든 독립형 링크 페이지**입니다. 별도 빌드 도구나 설치 과정 없이 GitHub Pages에서 작동합니다. 현재 배포본은 인트로·본문·모달 이미지와 자연음을 로컬 자산으로 포함해 외부 이미지 장애의 영향을 줄였습니다.
+이 폴더는 **순수 HTML과 CSS만으로 만든 독립형 링크 페이지**입니다. 별도 런타임 프레임워크 없이 GitHub Pages에서 작동합니다. 현재 배포본은 인트로·본문·모달 이미지와 자연음을 로컬 자산으로 포함해 외부 이미지 장애의 영향을 줄였습니다.
 
 ## 적용 방법
 
-저장소의 배포 루트에 `index.html`, `styles.css`, `styles.min.css`, `fonts/`, `script.js`, `locales.json`, `scripts/build-locales.py`, `robots.txt`, `sitemap.xml`, `audio/`, `images/` 폴더를 함께 올립니다. `.github/workflows/pages.yml`이 `main` 브랜치에 push될 때 번역 원본으로 `locales.js`, `/ko/index.html`, `/en/index.html`을 생성한 뒤 GitHub Pages artifact로 자동 배포합니다. 공개 주소는 **https://jikoolomo.github.io/lomo-webpage/** 입니다.
+저장소의 배포 루트에 `index.html`, `styles.css`, `styles.min.css`, `fonts/`, `script.js`, `locales.json`, `scripts/build-locales.py`, `robots.txt`, `sitemap.xml`, `audio/`, `images/` 폴더를 함께 올립니다. `.github/workflows/pages.yml`이 `main` 브랜치에 push될 때 `python scripts/build-locales.py --output-dir dist`를 실행하고, `dist/`만 GitHub Pages artifact로 업로드합니다. 공개 주소는 **https://jikoolomo.github.io/lomo-webpage/** 입니다.
+
+로컬 production 산출물은 다음처럼 생성합니다.
+
+```bash
+python3 -m pip install beautifulsoup4
+python3 scripts/build-locales.py --output-dir dist
+python3 -m http.server 4173 --bind 0.0.0.0 --directory dist
+```
+
+이 산출물에는 `/`, `/ko/`, `/en/`이 모두 포함되어야 하며, preview 확인 시 저장소 루트가 아니라 반드시 `dist/`를 서버 디렉터리로 사용합니다.
 
 모든 외부 링크는 이미 설정되어 있습니다. 카피와 번역은 `index.html` 및 `locales.json`에서, 색상·여백·사진 크롭은 `styles.css`에서 바꿀 수 있습니다. Route Studio·Waypoint·LOMO House의 의미 있는 사진은 `<img>` 태그로 제공되며, alt·실제 크기·lazy loading이 함께 설정되어 있습니다. `script.js`는 호버 색 전환, 자연음 전환, LOMO House 상세 모달과 언어 런타임 보완을 담당합니다. LOMO 페이지를 새로 열면 사운드는 ON 상태로 초기화되고, 페이지가 백그라운드로 전환되거나 다른 페이지로 이동하면 모든 자연음이 즉시 멈춥니다.
 

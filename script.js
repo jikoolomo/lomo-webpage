@@ -86,7 +86,43 @@ function renderFieldNotes(){
     el.addEventListener("click", () => trackEvent(el.dataset.track, { href: el.href || "" }));
   });
 }
-function applySiteConfig(){document.querySelectorAll("[data-config-key]").forEach(e=>{const v=siteConfig[e.dataset.configKey]||"";if(!v){e.hidden=true;return}if(e.tagName==="A"){e.href=v;e.rel="noreferrer noopener";e.target="_blank"}})}
+function applySiteConfig() {
+  const newsletterUrl = siteConfig.newsletterUrl || "";
+  const newsletterLink = document.querySelector("[data-config-key='newsletterUrl']");
+  const comingSoon = document.querySelector("#newsletter-coming-soon");
+  if (newsletterUrl) {
+    if (newsletterLink) {
+      newsletterLink.hidden = false;
+      newsletterLink.href = newsletterUrl;
+      newsletterLink.rel = "noreferrer noopener";
+      newsletterLink.target = "_blank";
+    }
+    if (comingSoon) comingSoon.hidden = true;
+  } else {
+    if (newsletterLink) newsletterLink.hidden = true;
+    if (comingSoon) comingSoon.hidden = false;
+  }
+
+  document.querySelectorAll("[data-config-key]").forEach((e) => {
+    const key = e.dataset.configKey;
+    if (key === "newsletterUrl") return;
+    const v = siteConfig[key] || "";
+    if (!v) {
+      e.hidden = true;
+      return;
+    }
+    e.hidden = false;
+    if (e.tagName === "A") {
+      if (key === "businessEmail") {
+        e.href = v.startsWith("mailto:") ? v : `mailto:${v}`;
+      } else {
+        e.href = v;
+        e.rel = "noreferrer noopener";
+        e.target = "_blank";
+      }
+    }
+  });
+}
 function trackEvent(name,metadata={}){if(typeof window.LOMO_ANALYTICS==="function")window.LOMO_ANALYTICS(name,metadata)}
 
 function getFocusableElements() {
@@ -179,7 +215,7 @@ function applyLanguage(language, persist = true) {
   });
   if (intro && !intro.hidden) setIntroScene([...introScenes].findIndex((scene) => scene.theme === intro.dataset.theme));
   updateSoundButton();
-  document.title = language === "en" ? "Jikoo On · LOMO Links" : "Jikoo On · LOMO Links";
+  document.title = language === "en" ? "Jikoo On · Earth Citizen | Living, Moving & Making Around the World" : "Jikoo On · Earth Citizen | 여행하며 살아보고 만드는 기록";
   renderFieldNotes();
   requestAnimationFrame(() => document.body.classList.add("i18n-ready"));
   if (persist) { try { localStorage.setItem("lomo-language", language); } catch (_) {} }

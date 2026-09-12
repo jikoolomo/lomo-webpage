@@ -160,7 +160,10 @@ def main() -> None:
         rewrite_relative_paths(soup, locale)
         target = output / locale / "index.html"
         target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_text("<!doctype html>\n" + str(soup), encoding="utf-8")
+        rendered = str(soup).lstrip()
+        if not rendered.lower().startswith("<!doctype html>"):
+            rendered = "<!DOCTYPE html>\n" + rendered
+        target.write_text(rendered, encoding="utf-8")
         print(f"wrote {target.relative_to(output)}")
 
 

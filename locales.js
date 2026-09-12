@@ -8,7 +8,7 @@ window.LOMO_TRANSLATIONS = {
     "intro.skip": "건너뛰기 <span>↗</span>",
     "hero.title": "서로 먼 풍경을<br />한 기록 안에<br /><i>천천히 기릅니다.</i>",
     "hero.english": "A citizen of Earth, holding distant climates together.",
-    "hero.origin": "물이 무서웠습니다.<br /><strong>지금은 다이버예요.</strong>",
+    "hero.origin": "물이 무서웠습니다.<br /><strong>지금은 다이버입니다.</strong>",
     "hero.body": "2022년 12월부터 서로 다른 환경에서 만난 감각을 사진과 글로 남기고 있습니다. 바다와 숲, 사막과 이끼숲처럼 쉽게 함께 놓이지 않는 풍경은 LOMO Route Studio와 언젠가 지을 테라리움 하우스의 상상이 되었습니다.",
     "hero.factLabel": "LOMO 기록의 핵심 환경",
     "ecosystem.title": "기록의 생태계",

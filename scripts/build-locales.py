@@ -66,7 +66,7 @@ def jsonld(locale: str, url: str) -> str:
                 "name": "Jikoo On",
                 "alternateName": "지쿠 On",
                 "sameAs": [
-                    "https://www.instagram.com/lomoworldjk/",
+                    "https://www.instagram.com/jikookim/",
                     "https://brunch.co.kr/@eatfear",
                     "https://eatfear.tistory.com/",
                 ],

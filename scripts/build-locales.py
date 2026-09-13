@@ -110,9 +110,17 @@ def rewrite_relative_paths(soup: BeautifulSoup, locale: str) -> None:
                 parts[0] = "../" + parts[0]
             candidates.append(" ".join(parts))
         element["srcset"] = ", ".join(candidates)
+    for element in soup.find_all(attrs={"imagesrcset": True}):
+        candidates = []
+        for candidate in element["imagesrcset"].split(","):
+            parts = candidate.strip().split()
+            if parts and parts[0].startswith(("images/", "audio/")):
+                parts[0] = "../" + parts[0]
+            candidates.append(" ".join(parts))
+        element["imagesrcset"] = ", ".join(candidates)
     for element in soup.find_all(href=True):
         href = element["href"]
-        if href in {"styles.css", "styles.min.css"} or href.startswith("fonts/"):
+        if href in {"styles.css", "styles.min.css"} or href.startswith(("fonts/", "images/")):
             element["href"] = "../" + href
         elif href == "ko/":
             element["href"] = "../ko/"

@@ -14,6 +14,7 @@ const introNumber = intro?.querySelector(".intro-number");
 const introKorean = intro?.querySelector(".intro-korean");
 const introEnglish = intro?.querySelector(".intro-english");
 const introProgress = intro ? [...intro.querySelectorAll(".intro-progress i")] : [];
+const introLandscapes = intro ? [...intro.querySelectorAll(".intro-landscape")] : [];
 const soundToggle = document.querySelector("[data-sound-toggle]");
 const soundLabel = document.querySelector("[data-sound-label]");
 const soundThemes = document.querySelectorAll("[data-sound-theme]");
@@ -30,7 +31,7 @@ let soundPreferencePrimed = false;
 let introInterval = null;
 const fieldNotes=[{category:"EARTH CITIZEN / LIVING",theme:"desert",titleKo:"동남아에서 한 달 살아본다면 어디가 좋을까",titleEn:"Where should you live in Southeast Asia for a month?",descriptionKo:"도시의 속도와 동네의 리듬을 직접 살아본 기록.",descriptionEn:"A field note on city pace, neighborhood rhythm, and staying awhile.",location:"SOUTHEAST ASIA",date:"FIELD NOTE 01",source:"Tistory",url:"https://eatfear.tistory.com/",image:"images/desert-240.webp"},{category:"WATER / EXPERIENCE",theme:"sea",titleKo:"물을 무서워하던 사람이 다이버가 되기까지",titleEn:"From being afraid of water to becoming a diver",descriptionKo:"두려움을 지나 바다에 들어가며 배운 것들.",descriptionEn:"What the water taught me after fear stopped being the whole story.",location:"THE WATER",date:"FIELD NOTE 02",source:"Instagram",url:"https://www.instagram.com/jikookim/",image:"images/sea-240.webp"},{category:"CITY / CONNECTION",theme:"forest",titleKo:"혼자 다낭에 가서 사람을 만나는 방법",titleEn:"How to meet people when you travel alone",descriptionKo:"낯선 도시에서 관계를 시작하는 작고 구체적인 방법.",descriptionEn:"Small, practical ways to begin a connection in an unfamiliar city.",location:"DA NANG",date:"FIELD NOTE 03",source:"Brunch",url:"https://brunch.co.kr/@eatfear",image:"images/forest-240.webp"}];
 const fadeHandles = new WeakMap();
-const INTRO_SCENE_DURATION = 1050;
+const INTRO_SCENE_DURATION = 1350;
 const introScenes = [
   { theme: "sea", number: "01 / 04", ko: "바다의 조류를<br>따라갑니다.", en: "Following<br>the sea tide." , english: "SEA / SALT / TIDE" },
   { theme: "forest", number: "02 / 04", ko: "숲의 그림자에<br>잠시 머뭅니다.", en: "Pausing<br>in forest shade.", english: "FOREST / ROOT / SHADE" },
@@ -179,13 +180,16 @@ function finishIntro() {
   document.documentElement.classList.remove("intro-pending");
   setAmbientTheme("moss");
   try { localStorage.setItem("lomo-intro-seen", "true"); } catch (_) {}
-  window.setTimeout(() => { intro.hidden = true; }, 460);
+  window.setTimeout(() => { intro.hidden = true; }, 660);
 }
 
 function setIntroScene(index) {
   const scene = introScenes[index];
   if (!intro || !scene) return;
   intro.dataset.theme = scene.theme;
+  introLandscapes.forEach((layer) => {
+    layer.classList.toggle("is-active", layer.dataset.theme === scene.theme);
+  });
   if (introNumber) introNumber.textContent = scene.number;
   if (introKorean) introKorean.innerHTML = scene[currentLanguage];
   if (introEnglish) introEnglish.textContent = scene.english;
@@ -332,7 +336,7 @@ function startIntro() {
     if (index >= introScenes.length) {
       window.clearInterval(introInterval);
       introInterval = null;
-      introTimer = window.setTimeout(finishIntro, 730);
+      introTimer = window.setTimeout(finishIntro, 850);
       return;
     }
     setIntroScene(index);

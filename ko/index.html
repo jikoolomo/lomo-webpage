@@ -98,7 +98,11 @@
     </script>
 <link href="../styles.min.css" rel="stylesheet"/>
 <link as="font" crossorigin="" href="../fonts/gowun-batang-400.woff2" rel="preload" type="font/woff2"/>
-<link as="image" fetchpriority="high" href="images/hero-earth.webp" imagesizes="(max-width: 600px) 88vw, 390px" imagesrcset="images/hero-earth-400.webp 400w, images/hero-earth.webp 1200w" rel="preload" type="image/webp"/>
+<link as="image" fetchpriority="high" href="../images/intro-sea.webp" rel="preload" type="image/webp"/>
+<link as="image" href="../images/intro-forest.webp" rel="preload" type="image/webp"/>
+<link as="image" href="../images/intro-desert.webp" rel="preload" type="image/webp"/>
+<link as="image" href="../images/intro-moss.webp" rel="preload" type="image/webp"/>
+<link as="image" fetchpriority="high" href="../images/hero-earth.webp" imagesizes="(max-width: 600px) 88vw, 390px" imagesrcset="../images/hero-earth-400.webp 400w, ../images/hero-earth.webp 1200w" rel="preload" type="image/webp"/>
 <link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23123f3d'/%3E%3Cpath d='M43 12C27 8 14 19 14 33c0 14 14 23 27 16 8-4 9-17 1-23-5-4-13-1-13 6 0 5 5 8 9 5' fill='none' stroke='%23e8e0cd' stroke-width='4.5' stroke-linecap='round'/%3E%3C/svg%3E" rel="icon"/>
 <title>Jikoo On · Earth Citizen | 여행하며 살아보고 만드는 기록</title>
 </head>
@@ -109,7 +113,12 @@
       Replace only image URLs in styles.css when using personal photographs.
     -->
 <div aria-hidden="true" class="ecosystem-intro" data-theme="sea" hidden="" id="ecosystem-intro">
-<div aria-hidden="true" class="intro-landscape"></div>
+<div aria-hidden="true" class="intro-landscapes">
+<div class="intro-landscape intro-landscape--sea is-active" data-theme="sea"></div>
+<div class="intro-landscape intro-landscape--forest" data-theme="forest"></div>
+<div class="intro-landscape intro-landscape--desert" data-theme="desert"></div>
+<div class="intro-landscape intro-landscape--moss" data-theme="moss"></div>
+</div>
 <div aria-hidden="true" class="intro-shade"></div>
 <div class="intro-content">
 <p class="intro-brand">LOMO / EARTH CITIZEN</p>
@@ -119,7 +128,7 @@
 <p class="intro-english">SEA / SALT / TIDE</p>
 </div>
 <div class="intro-footer">
-<div aria-hidden="true" class="intro-progress"><i></i><i></i><i></i><i></i></div>
+<div aria-hidden="true" class="intro-progress"><i class="is-active"></i><i></i><i></i><i></i></div>
 <button class="intro-skip" data-i18n-html="intro.skip" type="button">건너뛰기 <span>↗</span></button>
 </div>
 </div>
